@@ -1,4 +1,4 @@
 #!/bin/sh
 
-git symbolic-ref --short HEAD
+echo $GIT_BRANCH
 
