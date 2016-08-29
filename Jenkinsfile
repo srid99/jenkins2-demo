@@ -2,5 +2,5 @@ node {
     checkout scm
 
     stage 'test'
-    sh './echo.sh'
+    sh './show-git-branch-name.sh'
 }
