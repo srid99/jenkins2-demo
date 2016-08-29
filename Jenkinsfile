@@ -1,9 +1,20 @@
+properties([[$class: 'ParametersDefinitionProperty',
+    parameterDefinitions: [
+        [$class: 'BooleanParameterDefinition',
+         defaultValue: false,
+         name: 'BUILD_APP'
+        ]
+    ]
+]])
+
 node {
     checkout scm
 
-    stage 'Build'
-    echo 'Build the app'
-
+    if(${BUILD_APP}) {
+       stage 'Build'
+       echo 'Build the app'
+    }
+    
     stage 'Deploy to Test'
     echo 'Deploy the app in Test environment'
 
