@@ -18,7 +18,7 @@ node {
 	echo 'Publish the released version to a artifact repository'
 
 	stage 'Deploy to Prod'
-	echo 'All is well. Let's push it to Prod'
+	echo 'All is well. Let\'s push it to Prod'
     }
 }
 
