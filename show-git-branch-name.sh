@@ -1,3 +1,4 @@
 #!/bin/sh
 
-git branch
+git symbolic-ref --short HEAD
+
