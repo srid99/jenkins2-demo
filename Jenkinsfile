@@ -1,18 +1,18 @@
-if (env.BRANCH_NAME == 'master') {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'master-slack-token', variable: 'SLACK_TOKEN']]) {
-        SLACK_CHANNEL = '#build-master'
-        SLACK_TEAM_DOMAIN = 'jenkins-testing'
-        SLACK_TOKEN = SLACK_TOKEN
-    }
-} else {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'develop-slack-token', variable: 'SLACK_TOKEN']]) {
-        SLACK_CHANNEL = '#build-develop'
-        SLACK_TEAM_DOMAIN = 'jenkins-testing'
-        SLACK_TOKEN = SLACK_TOKEN
-    }
-}
-
 node {
+    if (env.BRANCH_NAME == 'master') {
+        withCredentials([[$class: 'StringBinding', credentialsId: 'master-slack-token', variable: 'SLACK_TOKEN']]) {
+            SLACK_CHANNEL = '#build-master'
+            SLACK_TEAM_DOMAIN = 'jenkins-testing'
+            SLACK_TOKEN = SLACK_TOKEN
+        }
+    } else {
+        withCredentials([[$class: 'StringBinding', credentialsId: 'develop-slack-token', variable: 'SLACK_TOKEN']]) {
+            SLACK_CHANNEL = '#build-develop'
+            SLACK_TEAM_DOMAIN = 'jenkins-testing'
+            SLACK_TOKEN = SLACK_TOKEN
+        }
+    }
+
     checkout scm
 
     echo BUILD_APP
