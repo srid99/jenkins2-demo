@@ -15,7 +15,6 @@ node {
 
     checkout scm
 
-    echo BUILD_APP
     stage 'Build'
     echo 'Build the app'
     
@@ -27,19 +26,19 @@ node {
     notify('Deployed in Test')
 
     if (env.BRANCH_NAME == 'master') {
-	stage 'Release'
-	echo 'Release the app'
+        stage 'Release'
+        echo 'Release the app'
 
-	stage 'Publish artifact'
-	echo 'Publish the released version to a artifact repository'
+        stage 'Publish artifact'
+        echo 'Publish the released version to a artifact repository'
 
-	stage 'Deploy to Prod'
-	echo 'All is well. Let\'s push it to Prod'
+        stage 'Deploy to Prod'
+        echo 'All is well. Let\'s push it to Prod'
         notify('Deployed in Prod')
     }
 }
 
 def notify(message) {
-    slackSend channel: "${SLACK_CHANNEL}", color: "good", message: "<${env.BUILD_URL}|${env.JOB_NAME} - #${env.BUILD_NUMBER}> - ${message}", teamDomain: "${SLACK_TEAM_DOMAIN}", token: "${SLACK_TOKEN}"
+    buildMessage = "<${env.BUILD_URL}|${env.JOB_NAME} - #${env.BUILD_NUMBER}> - ${message}"
+    slackSend channel: "${SLACK_CHANNEL}", color: "good", message: buildMessage, teamDomain: "${SLACK_TEAM_DOMAIN}", token: "${SLACK_TOKEN}"
 }
-
