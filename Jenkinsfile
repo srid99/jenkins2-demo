@@ -10,7 +10,7 @@ properties([[$class: 'ParametersDefinitionProperty',
 node {
     checkout scm
 
-    if(${BUILD_APP}) {
+    if(BUILD_APP) {
        stage 'Build'
        echo 'Build the app'
     }
