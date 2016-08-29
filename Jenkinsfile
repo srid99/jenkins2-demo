@@ -1,6 +1,7 @@
 properties([[$class: 'ParametersDefinitionProperty',
     parameterDefinitions: [
-        [$class: 'BooleanParameterDefinition',
+        [
+	 $class: 'BooleanParameterDefinition',
          defaultValue: false,
          name: 'BUILD_APP'
         ]
@@ -11,7 +12,7 @@ node {
     checkout scm
 
     echo BUILD_APP
-    if(BUILD_APP) {
+    if(BUILD_APP.toBoolean()) {
        stage 'Build'
        echo 'Build the app'
     }
